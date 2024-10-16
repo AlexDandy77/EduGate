@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Add your CSS styles here -->
+</head>
+<body>
+    <header>
+        <h1>Attendance Records</h1>
+        <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    </header>
+
+    <section>
+        <h2>Attendance</h2>
+       <table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>UID</th>
+            <th>Entry Time</th>
+            <th>Action</th>
+            <th>Notification</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in attendance_records %}
+        <tr>
+            <td>{{ record.student_id }}</td>
+            <td>{{ record.uid }}</td>
+            <td>{{ record.entry_time }}</td>  <!-- Ensure entry_time is being used here -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+        {% if not attendance_records %}
+        <p>No attendance records found for this student.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>© 2024 School Management System</p>
+    </footer>
+</body>
+</html>

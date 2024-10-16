@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm UID</title>
+</head>
+<body>
+    <h1>Confirm UID Association</h1>
+    <p>UID: {{ uid }}</p>
+    <form method="POST">
+        <label for="user_id">Select User:</label>
+        <select name="user_id" id="user_id">
+            {% for user in users %}
+                <option value="{{ user[0] }}">{{ user[1] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Assign UID</button>
+    </form>
+</body>
+</html>

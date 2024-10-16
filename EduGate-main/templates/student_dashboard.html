@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.student_name }}</h1>
+    <img src="{{ user.profile_picture }}" alt="Profile Picture">
+    <h2>Your Parent: {{ user.parent_name }}</h2>
+
+    <h3>Attendance Records:</h3>
+    <ul>
+        {% for record in attendance_records %}
+            <li>Entry: {{ record.entry_time }} | Exit: {{ record.exit_time }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/logout">Logout</a>
+</body>
+</html>

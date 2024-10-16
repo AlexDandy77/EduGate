@@ -1,0 +1,412 @@
+
+html {
+height: 100%;
+font-size: 16px; /* Base font size for rem units */
+}
+
+:root {
+--main-color: #d2e6e4;
+--color2: #0b7077;
+}
+
+.header {
+background-color: var(--main-color);
+padding: 2rem;
+height: auto;
+width: 100%;
+display: flex;
+align-items: center;
+margin-top: -2.5rem;
+margin-bottom: 0rem;
+}
+
+.elements1 {
+position: relative;
+z-index: 1;
+display: flex;
+justify-content: space-between;
+align-items: center;
+left:0;
+flex-wrap: wrap; 
+width: 100%;
+gap: 0.5rem; /* Space between the icon and the title */
+}
+
+.name {
+color: var(--color2);
+font-family: "Habibi", serif;
+display: flex;
+align-items: center; /* Center icon and text vertically */
+position: fixed; /* Fix the position */
+top: 1.8rem; /* Adjust based on where you want it to appear */
+left: 2rem;
+z-index: 1000; 
+}
+
+body img {
+position: absolute;
+z-index: -1;
+width: 100%;
+height: 100%;
+height: 500px;
+
+}
+
+.name h1 {
+font-size: 1.5rem;
+margin: 0;
+}
+
+
+i.bi-book {
+font-size: 2rem;
+margin-right: 0.5rem;
+}
+
+
+body {
+height: 100%;
+margin: 0;
+font-family: Inter, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: #D2E6E4;
+background-size: cover;
+background-attachment: fixed;
+background-position: center;
+min-height: 100vh;
+margin: 0;
+padding: 0;
+}
+
+#holder-container {
+position: relative;
+z-index: 1;
+background-color: white;
+width: 25vw; /* Adjust width to be responsive */
+max-width: 400px; /* Limit width on larger screens */
+padding: 2rem; /* Consistent padding */
+text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+min-height: 60vh; /* Ensure enough vertical space */
+border-radius: 1rem;
+box-sizing: border-box;
+transition: min-height 0.3s ease-in-out; /* Smooth transition */
+
+}
+
+
+#main-holder,#verification-holder {
+/* position: absolute;
+top: 0; */
+opacity: 0;
+display: none;
+}
+
+#main-holder.active, #verification-holder.active {
+display: flex;
+flex-direction: column;
+width:100%;
+opacity: 1;
+transition: opacity 0.3s ease-in toggling;
+}
+
+#verification-error-msg-holder {
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.signin-error-msg-holder{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#signin-error-msg1,#signin-error-msg2,#signin-error-msg3,#signin-error-msg4, #verification-error-msg {
+width: 100%;
+text-align: left;
+margin: 0;
+padding: 0;
+padding-top: 0.5vw;
+font-size: 0.8rem; /* Font size for readability */
+font-weight: 400;
+color: #8a0000;
+display: none;
+opacity: 0;
+transition: opacity 0.3s ease-in-out;
+}
+
+/* #error-msg-second-line, #verification-error-msg-second-line {
+display: block;
+} */
+
+#signin-form, #verification-form {
+width: 100%;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+}
+
+.signin-form-field::placeholder {
+color: #d9d9d9;
+}
+
+.signin-form-field {
+width: 100%;
+border: 1px solid #d9d9d9;
+border-radius: 0.5rem;
+margin-bottom: 0;
+padding: 0.5rem;
+box-sizing: border-box;
+}
+
+.title {
+text-align: left;
+margin-bottom: 0;
+width: 100%;
+padding: 0.5rem 0;
+padding-top: 0;
+margin-top: 1rem;
+font-size: 1rem;
+}
+
+#form-submit, #verification-submit {
+width: 100%;
+border: none;
+border-radius: 0.5rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+color: white;
+font-weight: 300;
+font-size: 1.2vw;
+background-color: #3a3a3a;
+padding: 0.5rem;
+cursor: pointer;
+outline: none;
+}
+
+#signin-header, #verification-header {
+/* position: fixed; 
+top: 13rem; 
+left: 20rem;
+right:20rem; */
+z-index: 1000; 
+margin-top: 1vh;
+font-weight: 400;
+font-size: 2rem;
+}
+
+#title_3 {
+position: relative;
+display: inline-block;
+text-align: left;
+padding-bottom: 0.2rem;
+margin-top: 1rem;
+}
+#text-to-login{
+font-size: 1vw;
+}
+
+#link-to-login:hover{
+text-decoration: underline;
+}
+
+#terms {
+display: flex;
+font-size: 0.875rem;
+margin-top: 1rem;
+text-align: left;
+align-items: flex-start;
+margin-bottom: 0;
+
+}
+
+#terms input[type="checkbox"] {
+margin-top: 0.28rem;
+margin-right: 0.5rem;
+}
+
+#terms label {
+display: inline;
+padding:0;
+color: #333;
+
+}
+
+#terms a {
+color: #007bff;
+text-decoration: none;
+}
+
+#terms a:hover {
+text-decoration: underline;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 1300px) {
+    #holder-container {
+      width: 60vw; /* More space for tablet screens */
+      padding: 2rem;
+    }
+  
+    .name h1 {
+      font-size: 1.4rem; /* Slightly bigger for readability */
+    }
+  
+    #form-submit {
+      font-size: 1.1rem; /* Larger for tap targets */
+    }
+  
+    #text-to-login {
+      font-size: 1.1rem; /* Improve readability */
+    }
+  
+    .signin-form-field {
+      padding: 0.6rem; /* Extra padding for touch devices */
+    }
+  }
+
+@media (max-width: 1000px) {
+    #holder-container {
+      width: 60vw; /* More space for tablet screens */
+      padding: 2rem;
+    }
+  
+    .name h1 {
+      font-size: 1.4rem; /* Slightly bigger for readability */
+    }
+  
+    #form-submit {
+      font-size: 1.1rem; /* Larger for tap targets */
+    }
+  
+    #text-to-login {
+      font-size: 1.1rem; /* Improve readability */
+    }
+  
+    .signin-form-field {
+      padding: 0.6rem; /* Extra padding for touch devices */
+    }
+  }
+
+@media (max-width: 768px) {
+    #holder-container {
+      width: 60vw; /* More space for tablet screens */
+      padding: 2rem;
+    }
+  
+    .name h1 {
+      font-size: 1.4rem; /* Slightly bigger for readability */
+    }
+  
+    #form-submit {
+      font-size: 1.1rem; /* Larger for tap targets */
+    }
+  
+    #text-to-login {
+      font-size: 1.1rem; /* Improve readability */
+    }
+  
+    .signin-form-field {
+      padding: 0.6rem; /* Extra padding for touch devices */
+    }
+  }
+
+  @media (max-width: 600px) {
+    .name h1 {
+      font-size: 1.25rem; /* Slightly smaller */
+    }
+  
+    #holder-container {
+      width: 70vw; /* Increase width for small mobile */
+      padding: 1.5rem;
+    }
+  
+    .signin-form-field {
+      padding: 0.5rem;
+    }
+  
+    #form-submit {
+      padding: 0.5rem;
+      font-size: 1rem; /* Reduced size for small mobile */
+    }
+  
+    #signin-error-msg1, #signin-error-msg2, #signin-error-msg3, #signin-error-msg4 {
+      font-size: 0.75rem; /* Adjust error message font size */
+    }
+  
+    #text-to-login {
+      font-size: 1rem; /* Increase for readability */
+    }
+  }
+
+  @media (max-width: 400px) {
+    .name h1 {
+      font-size: 1rem; /* Smaller for narrow screens */
+    }
+  
+    #holder-container {
+      width: 25vw; /* Almost full-width for narrow mobile */
+      padding: 1rem;
+    }
+  
+    .signin-form-field {
+      padding: 0.4rem; /* Reduced padding for smaller forms */
+    }
+  
+    #form-submit {
+      padding: 0.4rem;
+      font-size: 0.9rem; /* Reduced size */
+    }
+  
+    #signin-error-msg1, #signin-error-msg2, #signin-error-msg3, #signin-error-msg4 {
+      font-size: 0.65rem; /* Further adjust error messages */
+    }
+  
+    #text-to-login {
+      font-size: 1.2rem; /* Slightly bigger for readability */
+    }
+  }
+
+  @media (max-width: 300px) {
+    .name h1 {
+      font-size: 0.9rem; /* Smaller for ultra-small screens */
+    }
+  
+    #holder-container {
+      width: 25vw;
+      padding: 0.8rem; /* Reduced padding */
+    }
+  
+    .signin-form-field {
+      padding: 0.4rem; /* Keep inputs easy to tap */
+    }
+  
+    #form-submit {
+      padding: 0.4rem;
+      font-size: 0.8rem; /* Smaller buttons */
+    }
+  
+    #signin-error-msg1, #signin-error-msg2, #signin-error-msg3, #signin-error-msg4 {
+      font-size: 0.6rem; /* Make error messages more compact */
+    }
+  
+    #text-to-login {
+      font-size: 1.5rem; /* Slightly larger for readability */
+    }
+  }
+  
+  
+  
+  

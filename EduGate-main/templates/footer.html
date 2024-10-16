@@ -1,0 +1,140 @@
+<div class="footer">
+    <div class="footer-content">
+        <div class="name d-flex align-items-center">
+            <i class="bi bi-book"></i>
+            <h1>EduGate</h1>
+        </div>
+        <div class="info">
+            <ul class="generalInfo-footer">
+                <li class="listInfo">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h1>Adress:  Strada Studentilor 9, Chisinau</h1>
+                </li>
+                <li class="listInfo">
+                    <i class="bi bi-telephone-fill"></i>
+                    <h1>Telephone: +37360151789</h1>
+                </li>
+                <li class="listInfo">
+                    <i class="bi bi-clock-fill"></i>
+                    <h1>Response hours: 8 to 20</h1>
+                </li>
+                <li class="listInfo">
+                    <i class="bi bi-envelope-fill"></i>
+                    <h1>Email: info@edugate.com</h1>
+                </li>
+            </ul>
+            <ul class="otherInfo">
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Counseling</a></li>
+                <li><a href="#">Individual development</a></li>
+                <li><a href="#">Security and safeness</a></li>
+            </ul>
+            <ul class="otherInfo">
+                <li><a href="#">Links</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+    </div>    
+</div>
+
+<style>
+    /* Footer */
+
+    :root {
+    --main-color: #d2e6e4;
+    --color2: #0b7077;
+    }
+
+    .footer {
+        position: absolute;
+        background-color: var(--main-color);
+        height: 15rem;
+        width: 100%;
+        margin-top: 5rem;
+        border-top-left-radius: 60% 30%;
+        border-top-right-radius: 60% 30%;
+    }
+
+    .footer-content {
+        margin-top: 3rem;
+        margin-left: 1rem;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .generalInfo-footer {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin-top: 5px;
+    }
+
+    .listInfo {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .listInfo i {
+        font-size: 1rem;
+        color: var(--color2);
+        margin-right: 15px;
+    }
+
+    .listInfo h1 {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--color2);
+    }
+
+    .otherInfo {
+        list-style: none;
+        color: var(--color2);
+        font-size: 1rem;
+        font-weight: 400;
+        margin-left: 50px;
+    }
+
+    .otherInfo li:first-child {
+        font-weight: 700;
+        color: black;
+        margin-bottom: 15px;
+    }
+
+    .otherInfo li a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    @media (max-width: 768px) {
+        .listInfo i {
+            font-size: 0.7rem;
+        }
+        
+        .listInfo h1 {
+            font-size: 0.7rem;
+        }
+
+        .otherInfo {
+            font-size: 0.7rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .listInfo i {
+            font-size: 0.5rem;
+        }
+        
+        .listInfo h1 {
+            font-size: 0.5rem;
+        }
+
+        .otherInfo {
+            font-size: 0.5rem;
+        }
+    }
+
+</style>

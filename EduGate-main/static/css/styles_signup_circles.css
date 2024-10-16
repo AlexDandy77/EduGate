@@ -1,0 +1,204 @@
+
+
+    :root {
+        --main-color: #d2e6e4;
+        --color2: #0b7077;
+    }
+    .header {
+            background-color: var(--main-color);
+            padding: 2rem;
+            height: 5vw;
+        }
+
+        .elements1 {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap; 
+            width: 100%;
+        }
+
+        .name {
+            color: var(--color2);
+            font-family: "Habibi", serif;
+            margin-right: 10px; /* Optional: Add margin to space the icon from the text */
+
+        }
+
+        .name h1 {
+            font-size: 1.7rem;
+            margin: 0;
+        }
+
+        i.bi-book {
+        font-size: 2rem;
+        margin-right: 0.5rem;
+    }
+
+        html, body {
+        height: 100%;
+        margin: 0;
+    }
+        body{
+            background-color: #D2E6E4;
+            display:flex;
+            flex-direction: column;
+            /* justify-content: center;
+            align-items: center; */
+        }
+
+        #main-section{
+            display:flex;
+            flex-direction: row;
+            text-align: center;
+            width:100%;
+            justify-content: space-evenly;
+            padding: 2vw 8vw 5vw 8vw;
+
+
+        }
+
+        #question{
+            font-family: Raleway;
+            font-weight: bold;
+            font-size:5vw;
+            text-align:center;
+            color: var(--color2);
+            height:15vw;
+            width:100%;
+            padding-bottom: 3vw;
+        }
+
+        .user-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Inter;
+            color: var(--color2);
+            font-size:2vw;
+        }
+
+        .user-section p {
+        transition: transform 0.3s, text-decoration 0.3s;
+        cursor: pointer;
+    }
+
+        .user-section:hover p {
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+        
+        .user-section img {
+            width: 20vw;  /* Adjust width based on viewport */
+            height: 20vw; /* Height should be the same to maintain circle */
+            max-width: 150vw; /* Maximum size limit */
+            max-height: 150vw;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+            cursor: pointer;
+        }
+
+        .user-section img:hover {
+            transform: scale(1.1); /* Scale up the image on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+        }
+
+        #white-section{
+            
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            width:100%;
+            justify-content: space-evenly;
+            padding: 2vw 8vw 5vw 8vw;
+            font-family: Inter;
+            font-weight:200;
+            color: var(--color2);
+            min-height: 40vh;
+        }
+        
+        .category-text {
+            margin-top: 1vw; /* Space between image/title and text */
+            padding: 1vw; /* Space inside text block */
+            font-size: 1.5vw; /* Adjust font size as needed */
+            margin-left: 4vw; /* Adjust this value to shift text to the right */
+        }
+
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .user-section {
+                font-size: 2rem;
+                width: 30%;
+            }
+            .user-section img {
+                width: 25vw;
+                height: 25vw;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #main-section {
+                flex-direction: row;
+                /* padding: 2vw 2vw; */
+            }
+            .user-section {
+                width: 30%;
+                margin-bottom: 2rem;
+                font-size: 3vw;
+            }
+            .user-section img {
+                width: 25vw;
+                height: 25vw;
+            }
+            .name h1 {
+                font-size: 1.5rem;
+        }
+        i.bi-book {
+                font-size: 1.8rem;
+            }}
+
+        @media (max-width: 768px) {
+            .name h1 {
+                font-size: 1.5rem;
+            }
+            #question {
+                font-size: 6vw;
+                height: auto;
+            }
+            .category-text {
+                font-size: 2.1vw;
+                margin-left: 2vw;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .name h1 {
+                font-size: 1.2rem;
+            }
+            i.bi-book {
+                font-size: 1.5rem;
+            }
+            #question {
+                font-size: 8vw;
+            }
+            .user-section {
+                width: 100%;
+                font-size: 3vw;
+            }
+            .user-section img {
+                width: 22vw;
+                height: 22vw;
+            }
+            #white-section {
+                flex-direction: row;
+                padding: 2vw 1vw;
+                min-height: 60vh;
+            }
+            .category-text {
+                font-size: 2.3vw;
+                margin-left: 2vw;
+            }
+        }

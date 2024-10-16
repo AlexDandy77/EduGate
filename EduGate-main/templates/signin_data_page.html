@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <title>Sign Up</title>
+
+     <!-- Bootstrap -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
+ 
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles_signup.css">
+
+   
+</head>
+<body>
+    <img src="images/background.jpg">
+    <div class="header">
+        <div class="elements1">
+        <div class="name d-flex align-items-center">
+            <i class="bi bi-book"></i>
+            <h1>EduGate</h1>
+        </div>
+    </div>
+    </div>
+   
+
+    <main id="holder-container">
+        <div id="main-holder" class="active">
+            <h1 id="signin-header">Sign Up</h1>
+    
+            <form id="signin-form">
+                <p id="title_1" class="title">Phone number</p>
+                <input id="number-field" class="signin-form-field" type="text" name="phonenumber" pattern="\d{9}" placeholder="Phone number">
+               
+                <div class="signin-error-msg-holder" id="error-holder1">
+                    <p id="signin-error-msg1">Invalid phone number.</p>
+                </div>
+                
+                <p id="title_2" class="title">New password</p>
+                <input id="password-field" class="signin-form-field" type="password" name="password" placeholder="Password">
+                
+                <div class="signin-error-msg-holder" id="error-holder2">
+                    <p id="signin-error-msg2">Invalid password (it must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character).</p>
+                </div>
+
+                <p id="title_3" class="title">Repeat password</p>
+                <input id="password-repeat-field" class="signin-form-field" type="password" name="repeat_password" placeholder="Repeat password">
+             
+                <div class="signin-error-msg-holder" id="error-holder3">
+                    <p id="signin-error-msg3">The passwords don't match.</p>
+                </div>
+
+                <p id="terms">
+                    <input type="checkbox" id="terms-checkbox" required>
+                    <label for="terms-checkbox">By continuing, you agree to the <a href="terms_of_use.html" target="_blank">Terms of Use</a> and <a href="privacy_policy.html" target="_blank">Privacy Policy</a>.</label>
+                </p>
+
+                <div class="signin-error-msg-holder" id="error-holder4">
+                    <p id="signin-error-msg4">You must agree to the Terms of Use and Privacy Policy.</p>
+                </div>
+             
+                <!-- <div id="signin-error-msg-holder">
+                    <p id="signin-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+                </div> -->
+    
+                <input id="form-submit" type="submit" value="Sign Up">
+                <p id="text-to-login"> Already have an account? <a href="login_page.html" id="link-to-login" > Log in here. </a></p>
+            </form>
+        </div>
+    
+        <div id="verification-holder">
+            <p id="verification-header">Verification required</p>
+            <p id="verification-text">A verification code has been sent to your phone number. Please enter it below to complete your sign-in.</p>
+            <form id="verification-form">
+                <input id="verification-code" class="signin-form-field" type="text" name="code" placeholder="Verification Code">
+                <input id="verification-submit" type="submit" value="Verify">
+            </form>
+    
+            <div id="verification-error-msg-holder">
+                <p id="verification-error-msg">Invalid verification code. <span id="verification-error-msg-second-line">Please try again.</span></p>
+            </div>
+        </div>
+    </main>
+    
+
+    <script>
+        const signinForm = document.getElementById("signin-form");
+        const signinButton = document.getElementById("form-submit");
+       
+        const errorMsg1 = document.getElementById("signin-error-msg1");
+        const errorMsg2 = document.getElementById("signin-error-msg2");
+        const errorMsg3 = document.getElementById("signin-error-msg3");
+        const errorMsg4 = document.getElementById("signin-error-msg4");
+
+
+
+        const errorHolder1 = document.getElementById("error-holder1");
+        const errorHolder2 = document.getElementById("error-holder2");
+        const errorHolder3 = document.getElementById("error-holder3");
+        const errorHolder4 = document.getElementById("error-holder4");
+
+
+
+        
+        const mainHolder = document.getElementById("main-holder");
+        const verificationHolder = document.getElementById("verification-holder");
+        const holder = document.getElementById("holder-container");
+        const signinHeader = document.getElementById("signin-header");
+
+
+        const verificationButton = document.getElementById("verification-submit");
+        const verificationForm = document.getElementById("verification-form");
+        const verificationErrorMsg = document.getElementById("verification-error-msg");
+        const verificationErrorHolder = document.getElementById("verification-error-msg-holder");
+
+        const termsCheckBox = document.getElementById("terms-checkbox");
+
+        mainHolder.classList.add("active");
+
+        signinButton.addEventListener("click",(e) =>{
+            e.preventDefault(); // Prevent default form submission behavior
+
+            const phone = signinForm.phonenumber.value;
+            const password = signinForm.password.value;
+            const repeat_password = signinForm.repeat_password.value;
+
+            const phoneRegex = /^\d{9}$/;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            errorHolder1.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg1.style.opacity = 0; 
+                errorHolder2.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg2.style.opacity = 0;
+                errorHolder3.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg3.style.opacity = 0;
+                errorHolder4.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg4.style.opacity = 0;
+
+            if(!termsCheckBox.checked){
+                // errorMsg4.textContent = "You must agree to the Terms of Use and Privacy Policy.";
+                // holder.style.height = "63vh";
+                errorHolder4.style.display = "flex";
+                errorMsg4.style.display = "block";
+                errorMsg4.style.opacity = 1;
+            } else if (!phoneRegex.test(phone)) {
+                // errorMsg.textContent = "Invalid phone number. It must be exactly 9 digits.";
+                // holder.style.height = "63vh";
+                errorHolder1.style.display = "flex";
+                errorMsg1.style.display = "block";
+                errorMsg1.style.opacity = 1;
+            } else if (!passwordRegex.test(password)) {
+                // errorMsg.textContent = "Invalid password. It must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.";
+                // holder.style.height = "70vh";
+                errorHolder2.style.display = "flex";
+                errorMsg2.style.display = "block";
+                errorMsg2.style.opacity = 1;
+            } else if (password != repeat_password){
+                // holder.style.height = "63vh";
+                errorHolder3.style.display = "flex";
+                errorMsg3.style.display = "block";
+                errorMsg3.style.opacity = 1;
+
+            }
+            else if (phoneRegex.test(phone) && passwordRegex.test(password) && password === repeat_password ) {
+                errorHolder1.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg1.style.opacity = 0; 
+                errorHolder2.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg2.style.opacity = 0;
+                errorHolder3.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg3.style.opacity = 0;
+                errorHolder4.style.display = "none"; // Hide the error message if everything is valid
+                errorMsg4.style.opacity = 0;
+                // // alert("You have successfully signed in.");
+                // mainHolder.style.opacity = 0;
+                // setTimeout(() => {
+                //     mainHolder.style.display = "none";
+                //     verificationHolder.style.display = "flex";
+                //     verificationHolder.style.opacity = 1;
+                // }, 300); // Match this duration with the CSS transition if needed
+                    
+                mainHolder.classList.remove("active");
+                setTimeout(() => {
+                    mainHolder.style.display = "none";
+                    verificationHolder.classList.add("active");
+                    verificationHolder.style.display = "flex";
+                    verificationHolder.style.opacity = 1;
+                }, 300);
+        }
+
+            signinForm.phonenumber.value = "";
+            signinForm.password.value = "";
+            signinForm.repeat_password.value = "";
+            termsCheckBox.checked = false;
+            // errorHolder.style.display = "none"; // Hide the error message if everything is valid
+            // errorMsg.style.opacity = 0; 
+
+        });
+
+        verificationButton.addEventListener("click",(e) => {
+            e.preventDefault();
+
+            const verificationCode = verificationForm.code.value;
+            const correctCode = "123";
+
+            if (verificationCode === correctCode){
+                alert("Verification successful! Your account was created.");
+                verificationErrorHolder.style.display = "none"; // Hide the error message if everything is valid
+                verificationErrorMsg.style.opacity = 0; //
+        }
+            
+            else{
+                verificationErrorMsg.textContent = "Invalid verification code. Please try again.";
+                verificationErrorMsg.style.display = "block";
+                verificationErrorMsg.style.opacity = 1;
+            }
+
+            verificationForm.code.value="";
+        
+        })
+
+
+
+    </script>
+</body>
+</html>

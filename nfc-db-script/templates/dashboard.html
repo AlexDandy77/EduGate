@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin-right: 15px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        nav a.active {
+            background-color: #0056b3;
+        }
+        section {
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+        form, table {
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- START DASHBOARD STRUCTURE / START DASHBOARD STRUCTURE / START DASHBOARD STRUCTURE --> 
+
+    
+    <!-- Navigation Header -->
+    <nav>
+        <a href="#" id="nav-users" class="active" onclick="showSection('users')">Users</a>
+        <a href="#" id="nav-classes" onclick="showSection('classes')">Classes</a>
+        <a href="#" id="nav-teachers" onclick="showSection('teachers')">Teachers</a>
+        <a href="#" id="nav-parents" onclick="showSection('parents')">Parents</a>
+        <a href="#" id="nav-students" onclick="showSection('students')">Students</a>
+    </nav>
+
+    <!-- Users Section -->
+    <section id="users" class="active">
+        <h2>Manage Users</h2>
+        <!-- Existing forms and tables for managing users go here -->
+        <!-- Form to add a new user -->
+        <form id="add-user-form">
+            <h3>Add User</h3>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="password_hash" placeholder="Password Hash" required>
+            <input type="text" name="role" placeholder="Role (Student, Parent, Teacher, Admin)" required>
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="phone_number" placeholder="Phone Number">
+            <input type="text" name="profile_picture" placeholder="Profile Picture filename">
+            <button type="submit">Add User</button>
+        </form>
+
+        <!-- Search for users -->
+        <h3>Search Users</h3>
+        <input type="text" id="user-search-query" placeholder="Search by username, name, or email">
+        <button onclick="searchUsers()">Search</button>
+        <table id="users-table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Photo</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- User rows will be added here dynamically -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes">
+        <h2>Manage Classes</h2>
+        <!-- Existing forms and tables for managing classes go here -->
+        <!-- Form to Add a New Class -->
+        <h3>Add Class</h3>
+        <form id="add-class-form">
+            <input type="text" name="class_name" placeholder="Class Name" required>
+            <input name="description" placeholder="Description" required>
+            <button type="submit">Add Class</button>
+        </form>
+
+        <!-- Link Class to Teacher Form -->
+        <h3>Link Class to Teacher</h3>
+        <form id="link-class-teacher-form">
+            <!-- Dropdown to select class -->
+            <select id="class-teacher-dropdown" name="class_id" required>
+                <option value="">Select Class</option>
+                <!-- Options for classes will be populated dynamically -->
+            </select>
+
+            <!-- Dropdown to select teacher -->
+            <select id="teacher-dropdown" name="teacher_id" required>
+                <option value="">Select Teacher</option>
+                <!-- Options for teachers will be populated dynamically -->
+            </select>
+
+            <button type="submit">Link Teacher to Class</button>
+        </form>
+
+        <!-- Search for Classes -->
+        <h3>Search Classes</h3>
+        <input type="text" id="class-search-query" placeholder="Search by class name or description">
+        <button onclick="searchClasses()">Search</button>
+
+        <!-- Table to Display Classes -->
+        <table id="classes-table">
+            <thead>
+                <tr>
+                    <th>Class ID</th>
+                    <th>Class Name</th>
+                    <th>Description</th>
+                    <th>Teacher</th>
+                    <th>Actions</th> <!-- New Actions column -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Class rows will be added here dynamically -->
+            </tbody>
+        </table>
+
+    </section>
+
+    <!-- Teacher Management Section -->
+    <section id="teachers" class="management-section">
+        <h2>Teacher Management</h2>
+        <!-- Search Teacher -->
+        <h3>Search Teachers</h3>
+        <input type="text" id="teacher-search-query" placeholder="Search by name or email">
+        <button onclick="searchTeachers()">Search</button>
+
+        <!-- Table to Display Teachers -->
+        <table id="teachers-table">
+            <thead>
+                <tr>
+                    <th>Teacher ID</th>
+                    <th>Photo</th>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Teacher rows will be added here dynamically -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Parents Section -->
+    <section id="parents">
+        <h2>Manage Parents</h2>
+        <!-- Forms and tables for managing parents go here -->
+        <!-- Search for Parents -->
+        <h3>Search Parents</h3>
+        <input type="text" id="parent-search-query" placeholder="Search by name, username, or email">
+        <button onclick="searchParents()">Search</button>
+
+        <!-- Table to Display Parents -->
+        <!-- Table to Display Parents -->
+        <table id="parents-table">
+            <thead>
+                <tr>
+                    <th>Parent ID</th> <!-- Updated to Parent ID -->
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th> <!-- Actions column for future features like delete -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Parent rows will be added here dynamically -->
+            </tbody>
+        </table>
+
+    </section>
+
+    <!-- Students Section -->
+    <section id="students">
+        <h2>Manage Students</h2>
+        <!-- Forms and tables for managing students go here -->
+        <!-- Form to Link a Student to a Class -->
+        <h3>Link Student to Class</h3>
+        <form id="link-student-class-form">
+            <select id="student-class-dropdown" name="student_id" required>
+                <option value="">Select Student</option>
+                <!-- Options for students will be populated dynamically -->
+            </select>
+            <select id="class-dropdown" name="class_id" required>
+                <option value="">Select Class</option>
+                <!-- Options for classes will be populated dynamically -->
+            </select>
+            <button type="submit">Link to Class</button>
+        </form>
+
+
+        <!-- Form to Link a Student to a Parent -->
+        <h3>Link Student to Parent</h3>
+        <form id="link-student-parent-form">
+            <select id="student-parent-dropdown" name="student_id" required>
+                <option value="">Select Student</option>
+                <!-- Options will be populated dynamically -->
+            </select>
+            <select id="parent-dropdown" name="parent_id" required>
+                <option value="">Select Parent</option>
+                <!-- Options will be populated dynamically -->
+            </select>
+            <button type="submit">Link to Parent</button>
+        </form>
+
+
+        <!-- Search for Students -->
+        <h3>Search Students</h3>
+        <input type="text" id="student-search-query" placeholder="Search by name, username, or class">
+        <button onclick="searchStudents()">Search</button>
+
+        <!-- Table to Display Students -->
+        <!-- Table to Display Students -->
+        <table id="students-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Photo</th>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Class</th>
+                    <th>Email</th>
+                    <th>Parent</th> <!-- New Parent column -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Student rows will be added here dynamically -->
+            </tbody>
+        </table>
+
+    </section>
+
+<!-- END DASHBOARD STRUCTURE / END DASHBOARD STRUCTURE / END DASHBOARD STRUCTURE --> 
+
+
+    <script>
+        // JavaScript function to show the selected section and hide others
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all navigation links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Set the clicked link as active
+            document.getElementById('nav-' + sectionId).classList.add('active');
+
+            // Reload data for the displayed section
+            switch (sectionId) {
+                case 'users':
+                    searchUsers(); // Call function to reload users
+                    break;
+                case 'classes':
+                    searchClasses(); // Call function to reload classes
+                    break;
+                case 'teachers':
+                    searchTeachers(); // Call function to reload teachers
+                    break;
+                case 'parents':
+                    searchParents(); // Call function to reload parents
+                    break;
+                case 'students':
+                    searchStudents(); // Call function to reload students
+                    break;
+            }
+        }
+        
+
+        //--------------- USERS ---------------
+
+        // Function to search users
+        function searchUsers() {
+            const query = document.getElementById('user-search-query').value;
+            fetch(`/search_users?query=${query}`)
+                .then(response => response.json())
+                .then(users => {
+                    const usersTableBody = document.getElementById('users-table').getElementsByTagName('tbody')[0];
+                    usersTableBody.innerHTML = ''; // Clear the table body
+                    users.forEach(user => {
+                        const profilePictureUrl = user.profile_picture
+                    ? `/static/profile_pictures/${user.profile_picture}`
+                    : '/static/profile_pictures/default.jpg'; // Use a default image if no profile picture
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${user.user_id}</td>
+                            <td>
+                                <img src="${profilePictureUrl}" alt="Profile Picture" width="60" height="60"> <!-- Display profile picture -->
+                            </td>
+                            <td>${user.username}</td>
+                            <td>${user.full_name}</td>
+                            <td>${user.email}</td>
+                            <td>${user.role}</td>
+                            <td>${user.created_at}</td>
+                            <td><button onclick="deleteUser(${user.user_id})">Delete</button></td>
+                        `;
+                        usersTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to delete a user
+        function deleteUser(userId) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                fetch(`/delete_user/${userId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message || data.error);
+                    searchUsers(); // Refresh the user list
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // Initial load of users
+        searchUsers();
+
+        // Function to add a user
+        document.getElementById('add-user-form').onsubmit = function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            fetch('/add_user', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || data.error);
+                event.target.reset();
+                searchUsers(); // Refresh the user list
+            })
+            .catch(error => console.error('Error:', error));
+        };
+
+        //--------------- END USERS ---------------
+
+
+
+        //--------------- CLASSES ---------------
+
+        // Function to add a class
+        document.getElementById('add-class-form').onsubmit = function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            fetch('/add_class', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || data.error);
+                event.target.reset();
+                searchClasses(); // Refresh the class list
+            })
+            .catch(error => console.error('Error:', error));
+        };
+
+        // Function to delete a class
+        function deleteClass(classId) {
+            if (confirm('Are you sure you want to delete this class?')) {
+                fetch(`/delete_class/${classId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message || data.error);
+                    searchClasses(); // Refresh the class list
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // Update the searchClasses function to include the "Delete" button
+        function searchClasses() {
+            const query = document.getElementById('class-search-query').value;
+            fetch(`/search_classes?query=${query}`)
+                .then(response => response.json())
+                .then(classes => {
+                    const classesTableBody = document.getElementById('classes-table').getElementsByTagName('tbody')[0];
+                    classesTableBody.innerHTML = ''; // Clear the table body
+
+                    classes.forEach(classData => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${classData.class_id}</td>
+                            <td>${classData.class_name}</td>
+                            <td>${classData.description}</td>
+                            <td>
+                                ${classData.teacher_name ? 
+                                `<a href="#" onclick="viewTeacher(${classData.teacher_id})">(${classData.teacher_id}) ${classData.teacher_name}</a>`
+                                : 'No Teacher Assigned'}
+                            </td>
+                            <td>
+                                <button onclick="deleteClass(${classData.class_id})">Delete</button>
+                            </td>
+                        `;
+                        classesTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Initial load of classes
+        searchClasses();
+
+        //--------------- END CLASSES ---------------
+
+
+
+        //--------------- TEACHERS ---------------
+
+        // Function to view the teacher by teacher_id
+        function viewTeacher(teacherId) {
+            // Navigate to the teacher management section
+            showSection('teachers');
+            
+            // Search for the teacher by teacher_id to highlight or locate the teacher
+            document.getElementById('teacher-search-query').value = teacherId;
+            searchTeachers();
+        }
+
+
+        // Function to search and display teachers
+        function searchTeachers() {
+            const query = document.getElementById('teacher-search-query').value;
+            fetch(`/search_teachers?query=${query}`)
+                .then(response => response.json())
+                .then(teachers => {
+                    const teachersTableBody = document.getElementById('teachers-table').getElementsByTagName('tbody')[0];
+                    teachersTableBody.innerHTML = ''; // Clear the table body
+
+                    teachers.forEach(teacher => {
+                        const profilePictureUrl = teacher.profile_picture
+                    ? `/static/profile_pictures/${teacher.profile_picture}`
+                    : '/static/profile_pictures/default.jpg'; // Use a default image if no profile picture
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${teacher.teacher_id}</td>
+                            <td>
+                                <img src="${profilePictureUrl}" alt="Profile Picture" width="60" height="60"> <!-- Display profile picture -->
+                            </td>
+                            <td>${teacher.user_id}</td>
+                            <td>${teacher.full_name}</td>
+                            <td>${teacher.email}</td>
+                            <td>${teacher.phone_number}</td>
+                            <td>
+                                <!-- Placeholder for actions like Delete -->
+                                <button onclick="deleteTeacher(${teacher.teacher_id})">Delete</button>
+                            </td>
+                        `;
+                        teachersTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Initial load of teachers
+        searchTeachers();
+
+        //--------------- END TEACHERS ---------------
+
+
+
+        //--------------- PARENTS ---------------
+
+        // Function to delete a parent
+        function deleteParent(userId) {
+            if (confirm('Are you sure you want to delete this parent?')) {
+                fetch(`/delete_parent/${userId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message || data.error);
+                    searchParents(); // Refresh the parent list
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // Update the searchParents function to include the "parent_id"
+        function searchParents() {
+            const query = document.getElementById('parent-search-query').value;
+            fetch(`/search_parents?query=${query}`)
+                .then(response => response.json())
+                .then(parents => {
+                    const parentsTableBody = document.getElementById('parents-table').getElementsByTagName('tbody')[0];
+                    parentsTableBody.innerHTML = ''; // Clear the table body
+
+                    parents.forEach(parent => {
+                        const profilePictureUrl = parent.profile_picture
+                    ? `/static/profile_pictures/${parent.profile_picture}`
+                    : '/static/profile_pictures/default.jpg'; // Use a default image if no profile picture
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${parent.parent_id}</td> <!-- Changed to parent_id -->
+                            <td>
+                                <img src="${profilePictureUrl}" alt="Profile Picture" width="60" height="60"> <!-- Display profile picture -->
+                            </td>
+                            <td>${parent.username}</td>
+                            <td>${parent.full_name}</td>
+                            <td>${parent.email}</td>
+                            <td>${parent.phone_number}</td>
+                            <td>
+                                <!-- Placeholder for future actions like Delete or Edit -->
+                                <button onclick="deleteParent(${parent.parent_id})">Delete</button>
+                            </td>
+                        `;
+                        parentsTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+
+        // Initial load of parents
+        searchParents();
+
+
+        //--------------- END PARENTS ---------------
+
+
+        //--------------- STUDENTS ---------------
+
+        // Function to search and display students
+        function searchStudents() {
+            const query = document.getElementById('student-search-query').value;
+            fetch(`/search_students?query=${query}`)
+                .then(response => response.json())
+                .then(students => {
+                    const studentsTableBody = document.getElementById('students-table').getElementsByTagName('tbody')[0];
+                    studentsTableBody.innerHTML = ''; // Clear the table body
+
+                    students.forEach(student => {
+                        const profilePictureUrl = student.profile_picture
+                    ? `/static/profile_pictures/${student.profile_picture}`
+                    : '/static/profile_pictures/default.jpg'; // Use a default image if no profile picture
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${student.student_id}</td>
+                            <td>
+                                <img src="${profilePictureUrl}" alt="Profile Picture" width="60" height="60"> <!-- Display profile picture -->
+                            </td>
+                            <td>${student.username}</td>
+                            <td>${student.student_name}</td>
+                            <td>${student.class_name || 'No Class Assigned'}</td>
+                            <td>${student.email}</td>
+                            <td>
+                                ${student.parent_name ? 
+                                `<a href="#" onclick="locateParent(${student.parent_id})">(${student.parent_id}) ${student.parent_name}</a>` 
+                                : 'No Parent Assigned'}
+                            </td>
+                            <td>
+                                <!-- Placeholder for future actions like Delete or Edit -->
+                                <button onclick="deleteStudent(${student.student_id})">Delete</button>
+                            </td>
+                        `;
+                        studentsTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Initial load of students
+        searchStudents();
+
+        // Function to locate and highlight a parent in the Manage Parents section
+        function locateParent(parentId) {
+            // Switch to the Parents section
+            showSection('parents');
+
+            // Perform a search for the parent by their ID to locate them
+            document.getElementById('parent-search-query').value = parentId;
+            searchParents();
+        }
+
+        //--------------- END STUDENTS ---------------
+
+
+
+        //--------------- DROPDOWNS ---------------
+
+        // Generic function to populate dropdowns
+        function populateDropdown(apiEndpoint, dropdownId, valueKey, textKey) {
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(items => {
+                    const dropdown = document.getElementById(dropdownId);
+                    dropdown.innerHTML = '<option value="">Select</option>'; // Reset options
+                    items.forEach(item => {
+                        const option = document.createElement('option');
+                        option.value = item[valueKey];
+                        option.textContent = `(${item[valueKey]}) ${item[textKey]}`;
+                        dropdown.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function calls to populate dropdowns
+        populateDropdown('/get_students', 'student-parent-dropdown', 'student_id', 'full_name');
+        populateDropdown('/get_students', 'student-class-dropdown', 'student_id', 'full_name');
+        populateDropdown('/get_classes', 'class-dropdown', 'class_id', 'class_name');
+        populateDropdown('/get_classes', 'class-teacher-dropdown', 'class_id', 'class_name');
+        populateDropdown('/get_parents', 'parent-dropdown', 'parent_id', 'full_name');
+        populateDropdown('/get_teachers', 'teacher-dropdown', 'teacher_id', 'full_name');
+
+        // Generic function to handle form submission
+        function handleFormSubmission(formId, apiEndpoint) {
+            document.getElementById(formId).onsubmit = function(event) {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                fetch(apiEndpoint, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message || data.error);
+                })
+                .catch(error => console.error('Error:', error));
+            };
+        }
+
+        // Handling form submissions
+        handleFormSubmission('link-student-class-form', '/link_student_to_class');
+        handleFormSubmission('link-student-parent-form', '/link_student_to_parent');
+        handleFormSubmission('link-class-teacher-form', '/link_class_to_teacher');
+
+        //--------------- END DROPDOWNS ---------------
+
+
+    </script>
+</body>
+</html>
